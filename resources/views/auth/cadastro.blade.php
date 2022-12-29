@@ -15,14 +15,14 @@
 <div class="card shadow my-5 w-75 mx-auto">
     <div class="card-body">
 
-        <form {{-- action="{{ route('auth.cadastro.store')}}" --}} method="POST">
+        <form action="{{ route('auth.cadastro.store')}}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">
                         <input
                             type="text"
-                            name="user[name]"
+                            name="name"
                             class="form-control {{ $errors->has('user.name') ? 'is-invalid' : '' }}"
                             placeholder="Nome"
                             value="{{old('user.name')}}"
@@ -35,7 +35,7 @@
                     <div class="form-group"> 
                         <input
                             type="email"
-                            name="user[email]"
+                            name="email"
                             class="form-control {{ $errors->has('user.email') ? 'is-invalid' : '' }}"
                             placeholder="E-mail"
                             value="{{old('user.email')}}"    
@@ -48,7 +48,7 @@
                     <div class="form-group">     
                         <input
                             type="text"
-                            name="user[cpf]"
+                            name="cpf"
                             class="form-control cpf {{ $errors->has('user.cpf') ? 'is-invalid' : '' }}"
                             placeholder="CPF"
                             value="{{old('user.cpf')}}"    
@@ -62,14 +62,14 @@
                     <div class="form-group">     
                         <input
                             type="password"
-                            name="user[password]"
+                            name="password"
                             class="form-control {{ $errors->has('user.password') ? 'is-invalid' : '' }}"
                             placeholder="Senha"
                         >
                         <div class="invalid-feedback">{{ $errors->first('user.password')}}</div>
                     </div>
                   </div>
-
+{{-- 
                     <div class="col-12 col-md-6">  
                         <div class="form-group">     
                             <input
@@ -80,11 +80,11 @@
                             >
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             <hr> 
 
-            <div class="row mt-4">
+          {{--   <div class="row mt-4">
                 <div class="col-md-3">
                     <div class="form-group">
                         <input
@@ -211,7 +211,7 @@
                     </div>
                 </div>
             </div>
-
+ --}}
             <button type="submit" class="btn btn-success btn-block mt-3">
                Criar conta
             </button>

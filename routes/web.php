@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('cadastro', [CadastroController::class, 'create'])->name('auth.cadastro.create'); 
+Route::post('cadastro', [CadastroController::class, 'store'])->name('auth.cadastro.store'); 
