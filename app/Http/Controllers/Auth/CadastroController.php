@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\{User}; 
 use Illuminate\Http\Request;
+use App\Http\Requests\Auth\CadastroRequest;
 use Illuminate\Support\Facades\DB;
 
 class CadastroController extends Controller
@@ -14,7 +15,7 @@ class CadastroController extends Controller
         return view('auth.cadastro'); 
     }
 
-    public function store(Request $request)
+    public function store(CadastroRequest $request)
     {
         $requestData = $request->all();
 
