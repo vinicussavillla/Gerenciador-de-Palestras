@@ -21,6 +21,23 @@ class User extends Authenticatable
         'password',
         'role'
     ];
+    
+    // Relaciomentos
+     public function endereco()
+     {
+        return $this->hasOne(Endereco::class);
+     } 
+     public function telefones()
+     {
+        return $this->hasMany(Telefone::class);
+     } 
+ 
+
+    //Mutators 
+    public function setPasswordAttribute($value)
+    {
+       $this->attributes['password'] = bcrypt($value); 
+    }
 
     protected $hidden = [
         'password',
