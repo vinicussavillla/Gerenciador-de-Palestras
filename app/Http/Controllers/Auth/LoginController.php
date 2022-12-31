@@ -29,4 +29,10 @@ class LoginController extends Controller
             ->with('warning', 'Email ou senha incorretos!')
             ->withInput();
     }
+
+    public function destroy()
+    {
+        Auth::logout();
+        return redirect()->route('auth.login.create'); 
+    }
 }
