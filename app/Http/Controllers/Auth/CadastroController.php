@@ -33,7 +33,9 @@ class CadastroController extends Controller
             }
 
             DB::commit();
-            return 'Conta Criada com sucesso!'; 
+            return redirect()
+                ->route('auth.login.create')
+                ->with('success', 'Conta criada com sucesso! Efetue o Login');
 
         } catch (\Exception $exception) {
             DB::Rollback(); 
