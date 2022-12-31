@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\CadastroController;
+use App\Http\Controllers\Participante\Dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('cadastro', [CadastroController::class, 'create'])->name('auth.cadastro.create'); 
-Route::post('cadastro', [CadastroController::class, 'store'])->name('auth.cadastro.store'); 
+Route::post('cadastro', [CadastroController::class, 'store'])->name('auth.cadastro.store');
+
+Route::get('participante/dashboard', [DashboardController::class, 'index'])
+    ->name('participante.dashboard.index');
