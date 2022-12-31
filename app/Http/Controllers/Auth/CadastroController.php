@@ -17,7 +17,7 @@ class CadastroController extends Controller
 
     public function store(CadastroRequest $request)
     {
-        $requestData = $request->all();
+        $requestData = $request->validated();
 
         $requestData['user']['role'] = 'participante';
 
