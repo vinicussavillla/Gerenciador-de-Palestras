@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group([ 'as' =>'auth.','middleware' =>'guest'], function(){
+    Route::get('cadastro', [CadastroController::class, 'create'])->name('cadastro.create'); 
+    Route::post('cadastro', [CadastroController::class, 'store'])->name('cadastro.store');
+    Route::get('login', [LoginController::class, 'create'])->name('login.create'); 
+    Route::post('login', [LoginController::class, 'store'])->name('login.store'); 
+});
 
-Route::get('cadastro', [CadastroController::class, 'create'])->name('auth.cadastro.create'); 
-Route::post('cadastro', [CadastroController::class, 'store'])->name('auth.cadastro.store');
-Route::get('login', [LoginController::class, 'create'])->name('auth.login.create'); 
-Route::post('login', [LoginController::class, 'store'])->name('auth.login.store'); 
 
 Route::get('participante/dashboard', [DashboardController::class, 'index'])
     ->name('participante.dashboard.index')
