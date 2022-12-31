@@ -20,8 +20,17 @@ class LoginController extends Controller
             'password' => $request->password
         ];
 
-        if(Auth::attempt($credentials)){
-            return redirect()->route('participante.dashboard.index'); 
+        if (Auth::attempt($credentials)) {
+            $userRole = auth()->user()->role;
+
+            if ($userRole === 'participante') {
+                return redirect()->route('participante.dashboard.index');
+            }
+
+            if ($userRole === 'organizacao') {
+                return redirect()->route('organizacao.dashboard.index');
+
+            }
         }
 
         return redirect()

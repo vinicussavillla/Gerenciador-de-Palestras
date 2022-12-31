@@ -3,7 +3,8 @@
 use App\Http\Controllers\Auth\{
     LoginController, 
     CadastroController};
-use App\Http\Controllers\Participante\Dashboard\DashboardController;
+use App\Http\Controllers\Participante\Dashboard\DashboardController as ParticipanteDashboardController;
+use App\Http\Controllers\Organizacao\Dashboard\DashboardController as OrnizacaoDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +30,14 @@ Route::group([ 'as' =>'auth.'], function(){
 
 });
 
-
-Route::get('participante/dashboard', [DashboardController::class, 'index'])
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('participante/dashboard', [ParticipanteDashboardController::class, 'index'])
     ->name('participante.dashboard.index')
-    ->middleware('auth');
+    ->middleware('role:participante');
+
+    Route::get('organizacao/dashboard', [OrnizacaoDashboardController::class, 'index'])
+    ->name('organizacao.dashboard.index')
+    ->middleware('role:organizacao');
+    ;    
+});
+
