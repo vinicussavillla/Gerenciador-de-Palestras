@@ -97,6 +97,26 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
 
+                    @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                
+                @if (session()->has('warning'))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ session('warning') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                 @endif
+
+
+
                     <main class="pb-5">
                         <!-- CONTEÚDO -->
                         @yield('content')
