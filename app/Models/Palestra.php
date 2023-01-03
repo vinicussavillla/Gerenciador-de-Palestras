@@ -32,4 +32,16 @@ class Palestra extends Model
         $this->attributes['final_data_palestra'] = Carbon::createFromFormat('d/m/Y H:i', $value)
             ->format('Y-m-d H:i:s');                       
     }
+
+   //accessors 
+   public function getInicioDataPalestraFormattedAttribute()
+   {
+      return Carbon::parse($this->inicio_data_palestra)->format('d/m/Y H:i');
+   }
+
+   public function getFinalDataPalestraFormattedAttribute()
+   {
+      return Carbon::parse($this->inicio_data_palestra)->format('d/m/Y H:i');
+   }
+
 }

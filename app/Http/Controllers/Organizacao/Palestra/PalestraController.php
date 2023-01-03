@@ -9,9 +9,18 @@ use Illuminate\Http\Request;
 
 class PalestraController extends Controller
 {
-   public function index()
+   public function index(Request $request)
    {
-        return view('organizacao.palestras.index'); 
+     $palestras = Palestra::query();
+
+     if (isset($request->search) && $request->search !== '') {
+          $palestras->where('name', 'like', '%'.$request->search.'%');
+     }
+
+     return view('organizacao.palestras.index', [
+          'palestras' => $palestras->paginate(5), 
+          'search' => isset($request->search)? $request->search : ''
+     ]); 
    }
 
    public function create()
@@ -25,6 +34,37 @@ class PalestraController extends Controller
 
           return redirect()
                ->route('organizacao.palestras.index')
-               ->with('success', 'Evento cadastrado com sucesso!');
+               ->with('success', 'Palestra cadastrada com sucesso!');
+   }
+
+   public function edit($id)
+   {
+     $palestra = Palestra::findOrFail($id);
+
+          return view('organizacao.palestras.edit', [
+               'palestra' => $palestra
+     ]);
+   }
+
+   public function update($id, PalestraRequest $request)
+   {
+    $palestra = Palestra::findOrFail($id);
+
+    $palestra->update($request->validated()); 
+     
+    return redirect()
+       ->route('organizacao.palestras.index')
+       ->with('success', 'Palestra criado com sucesso!'); 
+   }
+
+
+   public function destroy(Palestra $palestra )
+   {
+
+    $palestra->delete(); 
+     
+    return redirect()
+       ->route('organizacao.palestras.index')
+       ->with('success', 'Palestra deletada com sucesso!'); 
    }
 }

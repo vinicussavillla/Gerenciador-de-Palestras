@@ -53,6 +53,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('organizacao/palestras', [PalestraController::class, 'store'])
         ->name('organizacao.palestras.store')
         ->middleware('role:organizacao');
-     
+
+        Route::get('organizacao/palestras/{id}/edit', [PalestraController::class, 'edit'])
+        ->name('organizacao.palestras.edit')
+        ->middleware('role:organizacao');
+
+        Route::put('organizacao/palestras/{id}', [PalestraController::class, 'update'])
+        ->name('organizacao.palestras.update')
+        ->middleware('role:organizacao');
+
+        Route::delete('organizacao/palestras/{palestra}', [PalestraController::class, 'destroy'])
+        ->name('organizacao.palestras.destroy')
+        ->middleware('role:organizacao');
 }); 
 

@@ -4,7 +4,7 @@
     <form>
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-fill">
-                <input type="text" name="search" class="form-control w-50 mr-2" value="" placeholder="Pesquisar...">
+                <input type="text" name="search" class="form-control w-50 mr-2" value="{{ $search }}" placeholder="Pesquisar...">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
             </div>
             <a href="{{ route('organizacao.palestras.create') }}" class="btn btn-primary">Nova palestra</a>
@@ -22,7 +22,35 @@
         </thead>
         <tbody>
             <!-- CONTEÚDO DA TABELA -->
+
+            @foreach ($palestras as $palestra )
+                <tr>
+                    <td class="align-middle">{{ $palestra->name }}</td>
+                    <td class="align-middle">{{ $palestra->name_palestrante }}</td>
+                    <td class="align-middle">{{ $palestra->inicio_data_palestra_formatted }}</td>
+                    <td class="align-middle">{{ $palestra->final_data_palestra_Formatted }}</td>
+                    <td class="align-middle">
+                        <div class="d-flex align-items-center"> 
+                             <a href="{{ route('organizacao.palestras.edit', $palestra->id) }}" class="btn btn-sm btn-primary mr-2">
+                                <i class="fa fa-edit"></i>
+                             </a>
+
+                             <form
+                                method="POST"
+                                action="{{ route('organizacao.palestras.destroy', $palestra->id) }}"
+                             > 
+                             @csrf
+                             @method('DELETE')
+                             <button type="submit" class="btn btn-sm btn-danger confirm-submit"> 
+                                <i class=" fa fa-trash"> </i>
+                             </button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 
+    {{ $palestras->withQueryString()->links() }}
 @endsection
+
