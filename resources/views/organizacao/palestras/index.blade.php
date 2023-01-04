@@ -1,6 +1,9 @@
 @extends('layouts.panel')
 @section('title', 'Palestras')
 @section('content')
+
+<h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
+
     <form>
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-fill">
@@ -31,6 +34,8 @@
                     <td class="align-middle">{{ $palestra->final_data_palestra_Formatted }}</td>
                     <td class="align-middle">
                         <div class="d-flex align-items-center"> 
+                            <a href="{{ route('organizacao.palestras.show', $palestra->id) }}" class="btn btn-sm btn-info mr-2">
+                                <i class="fa fa-eye"></i>
                              <a href="{{ route('organizacao.palestras.edit', $palestra->id) }}" class="btn btn-sm btn-primary mr-2">
                                 <i class="fa fa-edit"></i>
                              </a>

@@ -28,7 +28,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-calendar-check"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">LaraEvents</div>
+                <div class="sidebar-brand-text mx-3">Gerenciador de Palestras</div>
             </div>
 
             <!-- Divider -->
@@ -95,7 +95,6 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
 
                     @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">

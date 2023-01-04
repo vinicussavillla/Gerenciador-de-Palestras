@@ -31,6 +31,10 @@ class User extends Authenticatable
      {
         return $this->hasMany(Telefone::class);
      } 
+     public function palestras()
+     {
+        return $this->belongsToMany(Palestra::class);
+     } 
  
 
     //Mutators 

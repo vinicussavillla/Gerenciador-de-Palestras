@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Organizacao\Palestra;
 
 use App\Http\Controllers\Controller;
-use App\Models\Palestra;
+use App\Models\{Palestra, User};
+use App\Services\PalestraService;
 use App\Http\Requests\Organizacao\Palestra\PalestraRequest;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,20 @@ class PalestraController extends Controller
                ->with('success', 'Palestra cadastrada com sucesso!');
    }
 
+   public function show(Palestra $palestra)
+    {
+          return view('organizacao.palestras.show', [
+               'palestra' => $palestra,
+               'palestraFinalDataPalestraHasPassed' => PalestraService::palestraFinalDataPalestraHasPassed($palestra),
+               'allParticipantesUsers' => User::query()
+                    ->where('role', 'participante')
+                    ->when('palestras', function ($query) use ($palestra) {
+                         $query->where('id', $palestra->id);
+              })
+              ->get()
+          ]);
+     }
+
    public function edit($id)
    {
      $palestra = Palestra::findOrFail($id);
@@ -55,7 +70,7 @@ class PalestraController extends Controller
     return redirect()
        ->route('organizacao.palestras.index')
        ->with('success', 'Palestra criado com sucesso!'); 
-   }
+     }
 
 
    public function destroy(Palestra $palestra )
@@ -66,5 +81,5 @@ class PalestraController extends Controller
     return redirect()
        ->route('organizacao.palestras.index')
        ->with('success', 'Palestra deletada com sucesso!'); 
-   }
+     }
 }

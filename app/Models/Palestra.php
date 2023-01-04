@@ -20,6 +20,12 @@ class Palestra extends Model
         'publico_alvo',
     ];
 
+    //Relionamentos 
+    public function users()
+    {
+        return $this->belongsToMany(User::class); 
+    }
+
     //Mutators 
     public function setInicioDataPalestraAttribute($value)
     {
