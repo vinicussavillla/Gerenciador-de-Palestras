@@ -35,9 +35,9 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>@yield('subtitle')</span>
+                <a class="nav-link" href="/organizacao/palestras">
+                    <i class="fa-solid fa fa-bookmark"></i>                   
+                     <span>@yield('subtitle')</span>
                 </a>
             </li>
 
